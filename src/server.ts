@@ -8,7 +8,8 @@ import {
   validatorCompiler,
   ZodTypeProvider,
 } from 'fastify-type-provider-zod';
-import { routes } from './routes';
+import { createTask } from './routes/create-task';
+import { listTasks } from './routes/list-tasks';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -32,7 +33,8 @@ app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 });
 
-app.register(routes);
+app.register(createTask);
+app.register(listTasks);
 
 app.listen({ port: 3333 }).then(() => {
   console.log('HTTP server running.');
