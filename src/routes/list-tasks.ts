@@ -1,20 +1,9 @@
 import { FastifyTypedInstance } from '../types';
 import { z } from 'zod';
 import { prisma } from '../lib/prisma';
+import { listTasksResponse } from '../schemas/task.schema';
 
 export async function listTasks(app: FastifyTypedInstance) {
-  const listTasksResponse = z.array(
-    z.object({
-      id: z.string(),
-      title: z.string(),
-      description: z.string().nullable(),
-      tag: z.string().nullable(),
-      completed: z.boolean().nullable(),
-      createdAt: z.date(),
-      updatedAt: z.date(),
-    }),
-  );
-
   app.get(
     '/tasks',
     {

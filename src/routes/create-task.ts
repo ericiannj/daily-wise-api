@@ -2,15 +2,9 @@ import { FastifyTypedInstance } from '../types';
 import { z } from 'zod';
 import { prisma } from '../lib/prisma';
 import { randomUUID } from 'node:crypto';
+import { createTaskBody } from '../schemas/task.schema';
 
 export async function createTask(app: FastifyTypedInstance) {
-  const createTaskBody = z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    tag: z.string().optional(),
-    completed: z.boolean().optional(),
-  });
-
   app.post(
     '/tasks',
     {

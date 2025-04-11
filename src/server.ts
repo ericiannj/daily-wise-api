@@ -10,6 +10,9 @@ import {
 } from 'fastify-type-provider-zod';
 import { createTask } from './routes/create-task';
 import { listTasks } from './routes/list-tasks';
+import { getTask } from './routes/get-task';
+import { updateTask } from './routes/update-task';
+import { deleteTask } from './routes/delete-tasl';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -35,6 +38,9 @@ app.register(fastifySwaggerUi, {
 
 app.register(createTask);
 app.register(listTasks);
+app.register(getTask);
+app.register(updateTask);
+app.register(deleteTask);
 
 app.listen({ port: 3333 }).then(() => {
   console.log('HTTP server running.');
